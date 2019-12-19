@@ -48,9 +48,7 @@ paths:
         '200':
           description: An array of search results
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Search'
+            $ref: '#/definitions/Search'
         '500':
           description: Unexpected internal errors.
   /projects:
