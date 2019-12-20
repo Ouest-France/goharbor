@@ -52,21 +52,23 @@ func NewGetSearchOK() *GetSearchOK {
 An array of search results
 */
 type GetSearchOK struct {
-	Payload []*models.Search
+	Payload *models.Search
 }
 
 func (o *GetSearchOK) Error() string {
 	return fmt.Sprintf("[GET /search][%d] getSearchOK  %+v", 200, o.Payload)
 }
 
-func (o *GetSearchOK) GetPayload() []*models.Search {
+func (o *GetSearchOK) GetPayload() *models.Search {
 	return o.Payload
 }
 
 func (o *GetSearchOK) readResponse(response runtime.ClientResponse, consumer runtime.Consumer, formats strfmt.Registry) error {
 
+	o.Payload = new(models.Search)
+
 	// response payload
-	if err := consumer.Consume(response.Body(), &o.Payload); err != nil && err != io.EOF {
+	if err := consumer.Consume(response.Body(), o.Payload); err != nil && err != io.EOF {
 		return err
 	}
 
